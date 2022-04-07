@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/__head") %>
+<body>
+    <nav class="nav">
+        <header>
+            <h1 class="title">News_Spot</h1>
+        </header>
+        <form action="/news" method="GET" class="news-form">
+            <%- include("./partials/form-partials/__query") %>
+            <%- include("./partials/form-partials/__sort-by") %>
+            <%- include("./partials/form-partials/__from") %>
+            <%- include("./partials/form-partials/__to") %>
+            <button class="form-btn" type="submit">Search</button>
+        </form>
+    </nav>
+    <div class="card-container">
+        <% if (news.length !== 0) { %>
+            <% for (let article of news) { %>
+                <div class="card">
+                    <h1 class="card-title"><%= article.title %></h1>
+                    <div class="card-image-container">
+                        <img class="card-image" src="<%= article.urlToImage %>" alt="">
+                    </div>
+                    <span class="card-description"><%= article.description %></span>
+                    <div class="card-extra-info">
+                        <a class="card-url button" href="<%= article.url %>">Check it out at <%= article.source.name %></a>
+                        <i class="card-published"><%= String(new Date(article.publishedAt)).slice(0, 16) %></i>
+                    </div>
+                </div>
+            <% } %> 
+        <% } else { %>  
+            <%- include("./partials/__error") %>
+        <% } %> 
+    </div>
+    <a class="nav-link" href="/headlines">Headlines</a>
+</body>
+</html>

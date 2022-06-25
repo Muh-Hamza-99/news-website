@@ -1,4 +1,4 @@
-# news-website
+# 📰 news-website
 
 ## 📃 Description:
 An MVC-architecture news website retrieved from my old drive. 
